@@ -49,7 +49,7 @@ const Board = React.createClass({
   getInitialState() {
     return {
       board: ['', '', '', '', '', '', '', '', ''],
-      status:['', '', '', '', '', '', '', '', ''],
+      status:['', '', '', '', '', '', '', '', '']
     };
   },
 
@@ -134,6 +134,13 @@ const Board = React.createClass({
     if (status.join('').length === 9) alert('draw');
   },
 
+  restartGame(){
+    this.setState({
+      board: ['', '', '', '', '', '', '', '', ''],
+      status:['', '', '', '', '', '', '', '', '']
+    })
+  },
+
   render() {
     let result = this.checkGame();
     let {status, board} = this.state;
@@ -153,8 +160,17 @@ const Board = React.createClass({
     });
 
     return (
-      <div className="board">
-        {square}
+      <div>
+        <div id="center">
+          <div className="row">
+            <div className="board">
+              {square}
+            </div>
+          </div>
+        </div>
+        <div className="row restart">
+          <button className='btn btn-default' onClick={this.restartGame}>Restart</button>
+        </div>
       </div>
     )
   }
